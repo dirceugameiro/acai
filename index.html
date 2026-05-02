@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Açaí Puro - O Original do Brasil</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --roxo: #3D1A6E;
+    --roxo-escuro: #240F45;
+    --roxo-medio: #5B2D9E;
+    --lilas: #9B6FD0;
+    --creme: #FDF5E8;
+    --creme-escuro: #F5E8C8;
+    --amarelo: #F4C842;
+    --verde: #2E7D32;
+    --branco: #FFFFFF;
+    --texto-escuro: #1A0A2E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth;}
+  body { font-family: 'DM Sans', sans-serif; background: var(--creme); color: var(--texto-escuro); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(61,26,110,0.97);
+    backdrop-filter: blur(10px);
+  }
+  .logo {
+    font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.6rem;
+    color: var(--amarelo); letter-spacing: -0.5px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .complementos-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.complementos-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(155,111,208,0.25), transparent 60%);
+  transform: translateY(0);
+  transition: transform 0.1s linear;
+}
+  .logo-icon {
+    width: 36px; height: 36px; background: var(--amarelo); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amarelo); }
+  .nav-cta {
+    background: var(--amarelo); color: var(--roxo-escuro);
+    padding: 0.6rem 1.4rem; border-radius: 100px;
+    font-weight: 600; font-size: 0.875rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 12px rgba(244,200,66,0.4);
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 18px rgba(244,200,66,0.55); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(145deg, var(--roxo-escuro) 0%, var(--roxo) 45%, var(--roxo-medio) 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 7rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(155,111,208,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-blob {
+    position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+    width: 520px; height: 520px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(155,111,208,0.3) 0%, rgba(91,45,158,0.15) 60%, transparent 80%);
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100% { transform: translateY(-50%) scale(1); } 50% { transform: translateY(-53%) scale(1.04); } }
+
+  .hero-content { max-width: 620px; position: relative; z-index: 2; animation: fadeUp 0.9s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(244,200,66,0.15); border: 1px solid rgba(244,200,66,0.4);
+    color: var(--amarelo); font-size: 0.78rem; font-weight: 600;
+    padding: 0.35rem 0.9rem; border-radius: 100px; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(3rem, 7vw, 5.5rem);
+    color: var(--branco); line-height: 0.95; margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+  }
+  .hero h1 em { font-style: italic; color: var(--amarelo); }
+  .hero p {
+    color: rgba(255,255,255,0.75); font-size: 1.1rem; line-height: 1.7;
+    margin-bottom: 2.5rem; max-width: 440px;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--amarelo); color: var(--roxo-escuro);
+    padding: 0.9rem 2rem; border-radius: 100px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(244,200,66,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(244,200,66,0.6); }
+  .btn-outline {
+    background: transparent; color: rgba(255,255,255,0.85);
+    padding: 0.9rem 2rem; border-radius: 100px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    font-weight: 500; font-size: 1rem; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+
+  .hero-visual {
+    position: relative; z-index: 2;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+  .bowl-container {
+    width: 360px; height: 360px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bowl-bg {
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(155,111,208,0.5), rgba(61,26,110,0.6));
+    position: absolute; border: 2px solid rgba(155,111,208,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3), inset 0 2px 20px rgba(155,111,208,0.2);
+  }
+  .bowl-emoji { font-size: 7rem; position: relative; z-index: 1; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4)); }
+  .float-tag {
+    position: absolute; background: var(--branco);
+    border-radius: 12px; padding: 0.6rem 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    font-size: 0.78rem; font-weight: 600; color: var(--roxo-escuro);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .tag1 { top: 20px; right: -10px; animation: floatTag 3s 0.5s ease-in-out infinite; }
+  .tag2 { bottom: 40px; left: -20px; animation: floatTag 3s 1s ease-in-out infinite; }
+  .tag3 { bottom: 20px; right: 10px; animation: floatTag 3s 1.5s ease-in-out infinite; }
+  @keyframes floatTag { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .tag-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .hero-layout { display: flex; gap: 4rem; align-items: center; width: 100%; max-width: 1100px; margin: 0 auto; }
+
+  /* STATS */
+  .stats-bar {
+    background: var(--amarelo);
+    padding: 1.5rem 3rem;
+    display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Fraunces', serif; font-weight: 900; font-size: 2rem;
+    color: var(--roxo-escuro); line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; font-weight: 600; color: rgba(61,26,110,0.7); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 3rem; }
+  .section-tag {
+    display: inline-block; background: rgba(61,26,110,0.08);
+    color: var(--roxo); font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif; font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem); color: var(--roxo-escuro);
+    line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--roxo-medio); }
+  .section-sub { color: #5A4A7A; font-size: 1rem; line-height: 1.7; max-width: 520px; }
+
+.bg-parallax {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(155,111,208,0.25), transparent 60%);
+  z-index: 0;
+  will-change: transform;
+pointer-events: none;
+}
+
+
+
+  .parallax {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+  /* PRODUTOS */
+  .produtos-section { background: var(--branco); }
+  .produtos-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; margin-top: 3rem; max-width: 1100px; margin-left: auto; margin-right: auto;
+  }
+  .produto-card {
+    border-radius: 20px; overflow: hidden;
+    border: 1.5px solid rgba(61,26,110,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer; position: relative;
+  }
+  .produto-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(61,26,110,0.15); }
+  .produto-img {
+    height: 200px; display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; position: relative; overflow: hidden;
+  }
+  .produto-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.1) 100%);
+  }
+  .c1 { background: linear-gradient(135deg, #3D1A6E, #7B3FBC); }
+  .c2 { background: linear-gradient(135deg, #1A3D6E, #3F7BBC); }
+  .c3 { background: linear-gradient(135deg, #3D1A1A, #9E2D2D); }
+  .c4 { background: linear-gradient(135deg, #1A4D1A, #2E7D32); }
+  .produto-info { padding: 1.25rem; background: var(--branco); }
+  .produto-nome {
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.2rem;
+    color: var(--roxo-escuro); margin-bottom: 0.3rem;
+  }
+  .produto-desc { font-size: 0.85rem; color: #6B5B8A; line-height: 1.5; margin-bottom: 1rem; }
+  .produto-footer { display: flex; align-items: center; justify-content: space-between; }
+  .produto-preco {
+    font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.4rem; color: var(--roxo);
+  }
+  .btn-pedir {
+    background: var(--roxo); color: var(--branco);
+    padding: 0.5rem 1.1rem; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 600; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-pedir:hover { background: var(--roxo-medio); transform: scale(1.04); }
+  .produto-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    background: var(--amarelo); color: var(--roxo-escuro);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px;
+    padding: 0.3rem 0.7rem; border-radius: 100px;
+  }
+
+  /* COMPLEMENTOS */
+  .complementos-section {
+    background: linear-gradient(160deg, var(--roxo-escuro) 0%, var(--roxo) 100%);
+    overflow: hidden; position: relative;
+  }
+  .complementos-section .section-tag { background: rgba(244,200,66,0.15); color: var(--amarelo); }
+  .complementos-section .section-title { color: var(--branco); }
+  .complementos-section .section-sub { color: rgba(255,255,255,0.65); }
+  .comp-grid {
+    display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; max-width: 700px;
+  }
+  .comp-pill {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.9); padding: 0.55rem 1.2rem; border-radius: 100px;
+    font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .comp-pill:hover { background: rgba(244,200,66,0.2); border-color: var(--amarelo); transform: scale(1.04); }
+  .comp-pill.destaque { background: var(--amarelo); border-color: var(--amarelo); color: var(--roxo-escuro); font-weight: 700; }
+  .comp-layout { display: flex; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
+  .comp-visual { font-size: 9rem; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4)); animation: float 4s ease-in-out infinite; }
+
+  /* PROGRAMA FIDELIDADE */
+  .fidelidade-section {
+    background: var(--creme-escuro); text-align: center;
+  }
+  .fidelidade-card {
+    max-width: 700px; margin: 3rem auto 0;
+    background: var(--roxo-escuro); border-radius: 24px;
+    padding: 3rem; position: relative; overflow: hidden;
+  }
+  .fidelidade-card::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(155,111,208,0.2);
+  }
+  .fidelidade-card::after {
+    content: ''; position: absolute; bottom: -40px; left: -40px;
+    width: 150px; height: 150px; border-radius: 50%;
+    background: rgba(244,200,66,0.1);
+  }
+  .cashback-badge {
+    display: inline-block; background: var(--amarelo);
+    color: var(--roxo-escuro); font-family: 'Fraunces', serif;
+    font-weight: 900; font-size: 2.5rem;
+    padding: 0.5rem 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .fidelidade-card h3 {
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.8rem;
+    color: var(--branco); margin-bottom: 1rem; position: relative; z-index: 1;
+  }
+  .fidelidade-card p { color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 2rem; position: relative; z-index: 1; }
+  .fidelidade-input-row {
+    display: flex; gap: 0.75rem; max-width: 400px; margin: 0 auto; position: relative; z-index: 1;
+  }
+  .fidelidade-input {
+    flex: 1; padding: 0.75rem 1rem; border-radius: 100px;
+    border: none; background: rgba(255,255,255,0.12);
+    color: var(--branco); font-size: 0.9rem; outline: none;
+  }
+  .fidelidade-input::placeholder { color: rgba(255,255,255,0.4); }
+  .btn-cadastrar {
+    background: var(--amarelo); color: var(--roxo-escuro);
+    padding: 0.75rem 1.5rem; border-radius: 100px;
+    border: none; font-weight: 700; font-size: 0.9rem; cursor: pointer;
+    white-space: nowrap; transition: transform 0.2s;
+  }
+  .btn-cadastrar:hover { transform: scale(1.04); }
+
+  /* LOJAS */
+  .lojas-section { background: var(--branco); }
+  .lojas-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem; margin-top: 2.5rem; max-width: 1100px; margin-left: auto; margin-right: auto;
+  }
+  .loja-card {
+    border: 1.5px solid rgba(61,26,110,0.1); border-radius: 16px;
+    padding: 1.5rem; transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .loja-card:hover { transform: translateY(-4px); border-color: var(--roxo-medio); }
+  .loja-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .loja-cidade { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.1rem; color: var(--roxo-escuro); margin-bottom: 0.25rem; }
+  .loja-qtd { font-size: 0.8rem; color: #7A6A9A; }
+  .loja-status {
+    display: inline-block; margin-top: 0.75rem;
+    background: rgba(46,125,50,0.1); color: var(--verde);
+    font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 100px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--roxo-escuro); color: rgba(255,255,255,0.6);
+    padding: 4rem 3rem 2rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; max-width: 1100px; margin: 0 auto 3rem;
+  }
+  .footer-brand .logo { margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.875rem; line-height: 1.7; max-width: 260px; }
+  .footer-col h4 {
+    color: var(--amarelo); font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem;
+  }
+  .footer-col a {
+    display: block; color: rgba(255,255,255,0.55); text-decoration: none;
+    font-size: 0.875rem; margin-bottom: 0.5rem; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--amarelo); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem; text-align: center;
+    font-size: 0.8rem; max-width: 1100px; margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 5rem 1.5rem 3rem; }
+    .hero-layout { flex-direction: column; gap: 2rem; }
+    .bowl-container { width: 260px; height: 260px; }
+    .bowl-bg { width: 220px; height: 220px; }
+    .bowl-emoji { font-size: 5rem; }
+    section { padding: 4rem 1.5rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .comp-layout { flex-direction: column; }
+    .stats-bar { gap: 2rem; }
+  }
+  
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-icon">🫐</div>
+    Açaí Puro
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Início</a></li>
+    <li><a href="#produtoss">Cardápio</a></li>
+    <li><a href="#lojass">Lojas</a></li>
+    <li><a href="#">Sobre</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Pedir Agora</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-layout">
+    <div class="hero-content">
+      <div class="hero-badge">🫐 100% Amazônico · Self-Service</div>
+      <h1>O açaí <em>mais cremoso</em> do Brasil</h1>
+      <p>Feito com polpa pura da Amazônia, complementos exclusivos e parceiros premium. Venha criar o seu bowl perfeito.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">Ver Cardápio</a>
+        <a href="#" class="btn-outline">Nossas Lojas</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="bowl-container">
+        <div class="bowl-bg"></div>
+        <div class="bowl-emoji">🫐</div>
+        <div class="float-tag tag1"><div class="tag-dot" style="background:#F4C842"></div> Açaí Original</div>
+        <div class="float-tag tag2"><div class="tag-dot" style="background:#2E7D32"></div> +20 complementos</div>
+        <div class="float-tag tag3"><div class="tag-dot" style="background:#9B6FD0"></div> Self-Service</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">+200</div><div class="stat-label">Unidades</div></div>
+  <div class="stat-item"><div class="stat-num">+5mi</div><div class="stat-label">Clientes atendidos</div></div>
+  <div class="stat-item"><div class="stat-num">+12</div><div class="stat-label">Estados</div></div>
+  <div class="stat-item"><div class="stat-num">+150k</div><div class="stat-label">Clientes Lovers</div></div>
+</div>
+
+<section class="produtos-section" id="produtoss">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-tag">Cardápio</div>
+    <h2 class="section-title">Nossos <em>produtos</em> favoritos</h2>
+    <p class="section-sub">Do clássico ao especial, temos a combinação perfeita para o seu paladar.</p>
+    <div class="produtos-grid">
+      <div class="produto-card">
+        <div class="produto-badge">🔥 Mais pedido</div>
+        <div class="produto-img c1">🫐</div>
+        <div class="produto-info">
+          <div class="produto-nome">Açaí Tradicional</div>
+          <div class="produto-desc">Nossa receita original com polpa selecionada da Amazônia. Puro, cremoso e irresistível.</div>
+          <div class="produto-footer">
+            <div class="produto-preco">R$ 18,90</div>
+            <button class="btn-pedir">Pedir</button>
+          </div>
+        </div>
+      </div>
+      <div class="produto-card">
+        <div class="produto-badge">⭐ Novo</div>
+        <div class="produto-img c2">🍫</div>
+        <div class="produto-info">
+          <div class="produto-nome">Açaí com Nutella</div>
+          <div class="produto-desc">Açaí cremoso com Nutella generosa por cima. Uma combinação que vai te apaixonar.</div>
+          <div class="produto-footer">
+            <div class="produto-preco">R$ 24,90</div>
+            <button class="btn-pedir">Pedir</button>
+          </div>
+        </div>
+      </div>
+      <div class="produto-card">
+        <div class="produto-img c3">🍓</div>
+        <div class="produto-info">
+          <div class="produto-nome">Açaí com Morango</div>
+          <div class="produto-desc">Açaí com morangos frescos fatiados e granola crocante. Leveza na medida certa.</div>
+          <div class="produto-footer">
+            <div class="produto-preco">R$ 21,90</div>
+            <button class="btn-pedir">Pedir</button>
+          </div>
+        </div>
+      </div>
+      <div class="produto-card">
+        <div class="produto-badge">🌿 Fit</div>
+        <div class="produto-img c4">🥝</div>
+        <div class="produto-info">
+          <div class="produto-nome">Bowl Fit Power</div>
+          <div class="produto-desc">Açaí com banana, granola sem açúcar, mel e sementes de chia. Para quem cuida do corpo.</div>
+          <div class="produto-footer">
+            <div class="produto-preco">R$ 26,90</div>
+            <button class="btn-pedir">Pedir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="complementos-section">
+     <div class="bg-parallax"></div>
+  <div class="comp-layout">
+    <div>
+      <div class="section-tag">Complementos</div>
+      <h2 class="section-title" style="color:#fff;">Monte como<br><em style="color:var(--amarelo)">você quiser</em></h2>
+      <p class="section-sub">Mais de 25 complementos para turbinar o seu bowl. Frutas frescas, caldas artesanais, cremes e muito mais.</p>
+      <div class="comp-grid">
+        <span class="comp-pill destaque">🍓 Morango</span>
+        <span class="comp-pill">🍌 Banana</span>
+        <span class="comp-pill destaque">🍫 Nutella</span>
+        <span class="comp-pill">🥜 Amendoim</span>
+        <span class="comp-pill">🌾 Granola</span>
+        <span class="comp-pill destaque">🍯 Mel</span>
+        <span class="comp-pill">🫐 Mirtilo</span>
+        <span class="comp-pill">🍑 Pêssego</span>
+        <span class="comp-pill">🥥 Coco</span>
+        <span class="comp-pill">🍪 Oreo</span>
+        <span class="comp-pill destaque">🍬 Leite Condensado</span>
+        <span class="comp-pill">🌰 Castanha</span>
+        <span class="comp-pill">🍧 Paçoca</span>
+        <span class="comp-pill">+ mais 12...</span>
+      </div>
+    </div>
+    <div class="comp-visual parallax" data-speed="0.4">🫐</div>
+  </div>
+</section>
+
+<section class="fidelidade-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-tag">Programa de Fidelidade</div>
+    <h2 class="section-title">Seja um <em>Açaí Lovers</em></h2>
+    <p class="section-sub" style="margin:0 auto;">Cadastre-se e ganhe cashback em cada compra. Quanto mais você consome, mais desconto você tem.</p>
+    <div class="fidelidade-card">
+      <div class="cashback-badge">5% Cashback</div>
+      <h3>A cada compra você acumula pontos</h3>
+      <p>Cadastre seu número de telefone e comece a aproveitar os benefícios exclusivos do nosso programa de fidelidade. Desconto garantido desde a primeira compra.</p>
+      <div class="fidelidade-input-row">
+        <input type="tel" class="fidelidade-input" placeholder="+55 (xx) 99999-9999" />
+        <button class="btn-cadastrar">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lojas-section" id="lojass">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-tag">Nossas Lojas</div>
+    <h2 class="section-title">Encontre uma loja <em>perto de você</em></h2>
+    <p class="section-sub">Presentes em mais de 12 estados pelo Brasil, estamos sempre ao seu alcance.</p>
+    <div class="lojas-grid">
+      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">São Paulo</div><div class="loja-qtd">+45 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">Rio de Janeiro</div><div class="loja-qtd">+28 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">Belo Horizonte</div><div class="loja-qtd">+18 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">Campo Grande</div><div class="loja-qtd">+8 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">Cuiabá</div><div class="loja-qtd">+6 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card" style="border-style:dashed;background:rgba(61,26,110,0.03)"><div class="loja-icon">📍</div><div class="loja-cidade">Ver todas</div><div class="loja-qtd">+200 unidades no Brasil</div><div class="loja-status" style="background:rgba(61,26,110,0.1);color:var(--roxo)">→ Ver mapa</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="raspadinha" style="padding:80px 20px;text-align:center;background:#fff;">
+  <h2 style="font-family:Fraunces;font-size:2rem;color:#240F45;">
+    🎁 Raspe e ganhe desconto
+  </h2>
+  <p style="color:#666;margin-bottom:20px;">
+    Descubra seu desconto exclusivo agora
+  </p>
+
+  <div style="position:relative;width:260px;margin:0 auto;">
+    
+    <!-- PREMIO -->
+    <div id="premio" style="
+      background:#F4C842;
+      color:#240F45;
+      font-weight:700;
+      font-size:28px;
+      padding:40px 0;
+      border-radius:16px;
+    ">
+      ?
+    </div>
+
+    <!-- CAMADA PRA RASPAR -->
+    <canvas id="raspagem" width="260" height="120"
+      style="
+        position:absolute;
+        top:0;
+        left:0;
+        border-radius:16px;
+        cursor:pointer;
+      ">
+    </canvas>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-icon">🫐</div>
+        Açaí Puro
+      </div>
+      <p>O melhor em self-service de açaís do Brasil. Polpa 100% amazônica, complementos premium e parceiros exclusivos.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <a href="#">Quem Somos</a>
+      <a href="#">Blog</a>
+      <a href="#">Imprensa</a>
+      <a href="#">Carreiras</a>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <a href="#">Cardápio</a>
+      <a href="#">Delivery</a>
+      <a href="#">Açaí Lovers</a>
+      <a href="#">Franquias</a>
+    </div>
+    <div class="footer-col">
+      <h4>Suporte</h4>
+      <a href="#">Fale Conosco</a>
+      <a href="#">Encontrar Lojas</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">LGPD</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Açaí Puro © 2026 · Todos os direitos reservados
+  </div>
+</footer>
+<div id="popupUrgencia" style="
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#240F45;
+  color:#fff;
+  padding:14px 20px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+  z-index:9999;
+  display:none;
+  font-size:14px;
+">
+  ⚡🎁 Raspe e ganhe seu desconto!
+</div>
+
+
+<script>
+// ==========================
+// 🎁 RASPADINHA (OK)
+// ==========================
+(function(){
+
+const canvas = document.getElementById("raspagem");
+if(!canvas) return;
+
+const premioEl = document.getElementById("premio");
+const ctx = canvas.getContext("2d");
+
+const EXPIRACAO_HORAS = 12;
+
+function now(){ return new Date().getTime(); }
+
+function salvar(data){
+  localStorage.setItem("raspadinha_data", JSON.stringify(data));
+}
+
+function carregar(){
+  const d = localStorage.getItem("raspadinha_data");
+  return d ? JSON.parse(d) : null;
+}
+
+function limpar(){
+  localStorage.removeItem("raspadinha_data");
+}
+
+let data = carregar();
+
+if(data && now() > data.expira){
+  limpar();
+  data = null;
+}
+
+if(data && data.usado){
+  canvas.style.display = "none";
+  premioEl.innerText = data.desconto + "% OFF 🎁";
+  return;
+}
+
+let desconto;
+
+if(data){
+  desconto = data.desconto;
+} else {
+  desconto = Math.floor(Math.random() * 11) + 5;
+
+  data = {
+    desconto: desconto,
+    usado: false,
+    criado: now(),
+    expira: now() + (EXPIRACAO_HORAS * 60 * 60 * 1000)
+  };
+
+  salvar(data);
+}
+
+premioEl.innerText = desconto + "% OFF";
+
+ctx.fillStyle = "#bbb";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+ctx.globalCompositeOperation = "destination-out";
+
+let raspando = false;
+let raspado = 0;
+
+canvas.addEventListener("mousedown", ()=> raspando = true);
+canvas.addEventListener("mouseup", ()=> raspando = false);
+canvas.addEventListener("mouseleave", ()=> raspando = false);
+canvas.addEventListener("mousemove", raspar);
+
+canvas.addEventListener("touchstart", ()=> raspando = true);
+canvas.addEventListener("touchend", ()=> raspando = false);
+canvas.addEventListener("touchmove", rasparTouch);
+
+function raspar(e){
+  if(!raspando) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  desenhar(x,y);
+}
+
+function rasparTouch(e){
+  const rect = canvas.getBoundingClientRect();
+  const t = e.touches[0];
+
+  const x = t.clientX - rect.left;
+  const y = t.clientY - rect.top;
+
+  desenhar(x,y);
+}
+
+function desenhar(x,y){
+  ctx.beginPath();
+  ctx.arc(x, y, 20, 0, Math.PI * 2);
+  ctx.fill();
+
+  raspado++;
+
+  if(raspado % 15 === 0){
+    verificar();
+  }
+}
+
+function verificar(){
+  const pixels = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+  let total = pixels.length / 4;
+  let transparentes = 0;
+
+  for(let i=3; i<pixels.length; i+=4){
+    if(pixels[i] === 0) transparentes++;
+  }
+
+  if(transparentes / total > 0.28){
+    finalizar();
+  }
+}
+
+function finalizar(){
+
+  canvas.style.display = "none";
+
+  data.usado = true;
+  salvar(data);
+
+  const codigo = "RASPA" + desconto;
+
+  localStorage.setItem("cupom", codigo);
+
+  window.cupons = window.cupons || {};
+  window.cupons[codigo] = {
+    tipo: "percentual",
+    valor: desconto
+  };
+
+  setTimeout(()=>{
+    alert(`🎉 Você ganhou ${desconto}% OFF!\nCupom: ${codigo}`);
+  }, 300);
+}
+
+})();
+
+
+// ==========================
+// 🌊 PARALLAX PROFISSIONAL (AGORA FUNCIONA)
+// ==========================
+(function(){
+
+  const elements = document.querySelectorAll(".parallax");
+  const bg = document.querySelector(".bg-parallax");
+
+  let ticking = false;
+
+  function update(){
+    const scrollY = window.scrollY;
+
+    elements.forEach(el => {
+      const speed = parseFloat(el.dataset.speed) || 0.3;
+      el.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+    });
+
+    if(bg){
+      bg.style.transform = `translate3d(0, ${scrollY * 0.15}px, 0)`;
+    }
+
+    ticking = false;
+  }
+
+  function onScroll(){
+    if(!ticking){
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll);
+
+})();
+</script>
+</body>
+</html>
