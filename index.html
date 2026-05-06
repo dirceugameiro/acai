@@ -3,27 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Açaí Puro — o açaí mais cremoso do Brasil. Polpa 100% amazônica, +25 complementos premium. Encontre uma das +200 unidades pelo país.">
+<meta property="og:title" content="Açaí Puro - O Original do Brasil">
+<meta property="og:description" content="O açaí mais cremoso do Brasil. Polpa 100% amazônica, complementos exclusivos e parceiros premium.">
+<meta property="og:type" content="website">
 <title>Açaí Puro - O Original do Brasil</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><text y='32' font-size='32'>🫐</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
-<nav>
+<nav aria-label="Navegação principal">
   <div class="logo">
-    <div class="logo-icon">🫐</div>
+    <div class="logo-icon"><img src="ChatGPT Image 4 de mai. de 2026, 16_19_48.png" alt=""></div>
     Açaí Puro
   </div>
-  <ul class="nav-links">
+  
+  <ul class="nav-links" id="nav-links">
     <li><a href="#">Início</a></li>
-    <li><a href="#produtoss">Cardápio</a></li>
-    <li><a href="#lojass">Lojas</a></li>
+    <li><a href="#produtos">Cardápio</a></li>
+    <li><a href="#lojas">Lojas</a></li>
     <li><a href="#">Sobre</a></li>
     <li><a href="#">Blog</a></li>
+    <li class="mobile-cart-entry">
+      <button class="nav-cta mobile-cart-btn" id="mobileCartBtn">Carrinho 🛒 <span id="mobileCartCount">0</span></button>
+    </li>
   </ul>
-  <a href="#" class="nav-cta">Pedir Agora</a>
+  <div class="nav-actions">
+    <button class="cart-btn" id="cartBtn">🛒 <span id="cartCount">0</span></button>
+    <a href="#" class="nav-cta">Pedir Agora</a>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- Overlay para o carrinho -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Carrinho Lateral -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2>Carrinho</h2>
+    <button class="close-cart" id="closeCart">&times;</button>
+  </div>
+  <div id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total">Total: R$ <span id="cartTotal">0.00</span></div>
+    <button id="finalizeOrder">Finalizar Pedido via WhatsApp</button>
+  </div>
+</div>
 
 <section class="hero">
   <div class="hero-blob"></div>
@@ -33,17 +66,17 @@
       <h1>O açaí <em>mais cremoso</em> do Brasil</h1>
       <p>Feito com polpa pura da Amazônia, complementos exclusivos e parceiros premium. Venha criar o seu bowl perfeito.</p>
       <div class="hero-btns">
-        <a href="#tagcard" class="btn-primary">Ver Cardápio</a>
-        <a href="#lojasnossas" class="btn-outline">Nossas Lojas</a>
+        <a href="#produtos" class="btn-primary">Ver Cardápio</a>
+        <a href="#lojas" class="btn-outline">Nossas Lojas</a>
       </div>
     </div>
     <div class="hero-visual">
       <div class="bowl-container">
         <div class="bowl-bg"></div>
-        <div class="bowl-emoji">🫐</div>
-        <div class="float-tag tag1"><div class="tag-dot" style="background:#F4C842"></div> Açaí Original</div>
-        <div class="float-tag tag2"><div class="tag-dot" style="background:#2E7D32"></div> +20 complementos</div>
-        <div class="float-tag tag3"><div class="tag-dot" style="background:#9B6FD0"></div> Self-Service</div>
+        <div class="bowl-emoji"><img src="ChatGPT Image 4 de mai. de 2026, 16_14_37.png" alt=""></div>
+        <div class="float-tag tag1"><div class="tag-dot"></div> Açaí Original</div>
+        <div class="float-tag tag2"><div class="tag-dot"></div> +20 complementos</div>
+        <div class="float-tag tag3"><div class="tag-dot"></div> Self-Service</div>
       </div>
     </div>
   </div>
@@ -56,69 +89,77 @@
   <div class="stat-item"><div class="stat-num">+150k</div><div class="stat-label">Clientes Lovers</div></div>
 </div>
 
-<section class="produtos-section" id="produtoss">
-  <div style="max-width:1100px;margin:0 auto;">
+<section class="produtos-section" id="produtos">
+  <div style="max-width:1100px;margin:0 auto; overflow:hidden;">
+    
     <div class="section-tag" id="tagcard">Cardápio</div>
-    <h2 class="section-title" id="cardapio">Nossos <em>produtos</em> favoritos</h2>
+    <h2 class="section-title">Nossos <em>produtos</em> favoritos</h2>
     <p class="section-sub">Do clássico ao especial, temos a combinação perfeita para o seu paladar.</p>
-    <div class="produtos-grid">
-      <div class="produto-card">
+
+    <div class="produtos-slider" id="produtosSlider">
+
+      <!-- PRODUTO -->
+      <div class="produto-card" data-name="Açaí Tradicional" data-price="18.90">
         <div class="produto-badge">🔥 Mais pedido</div>
-        <div class="produto-img c1">🫐</div>
+<div class="produto-img c1"><img src="https://s2-globorural.glbimg.com/wDTYLlIcZBOZpE_1H5_PyXtax_k=/0x0:5760x3840/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_afe5c125c3bb42f0b5ae633b58923923/internal_photos/bs/2022/T/m/2BmE0cTRmHVf5nsz6WtQ/2019-04-22-gettyimages-491513858.jpg" alt=""></div>
         <div class="produto-info">
           <div class="produto-nome">Açaí Tradicional</div>
-          <div class="produto-desc">Nossa receita original com polpa selecionada da Amazônia. Puro, cremoso e irresistível.</div>
+          <div class="produto-desc">Nossa receita original com polpa selecionada da Amazônia.</div>
           <div class="produto-footer">
             <div class="produto-preco">R$ 18,90</div>
             <button class="btn-pedir">Pedir</button>
           </div>
         </div>
       </div>
-      <div class="produto-card">
+
+      <div class="produto-card" data-name="Açaí com Nutella" data-price="24.90">
         <div class="produto-badge">⭐ Novo</div>
-        <div class="produto-img c2">🍫</div>
+        <div class="produto-img c2"><img src="https://cdn.cooki.net.br/fotos/a%C3%A7a%C3%AD-no-pote-de-nutella-650-91a984ea-26a9-4d88-bf6c-bcc91eb59576.jpg" alt=""></div>
         <div class="produto-info">
           <div class="produto-nome">Açaí com Nutella</div>
-          <div class="produto-desc">Açaí cremoso com Nutella generosa por cima. Uma combinação que vai te apaixonar.</div>
+          <div class="produto-desc">Açaí cremoso com Nutella generosa.</div>
           <div class="produto-footer">
             <div class="produto-preco">R$ 24,90</div>
             <button class="btn-pedir">Pedir</button>
           </div>
         </div>
       </div>
-      <div class="produto-card">
-        <div class="produto-img c3">🍓</div>
+
+      <div class="produto-card" data-name="Açaí com Morango" data-price="21.90">
+        <div class="produto-img c3"><img src="https://acaifruitshow.com.br/wp-content/uploads/2021/09/40.png" alt=""></div>
         <div class="produto-info">
           <div class="produto-nome">Açaí com Morango</div>
-          <div class="produto-desc">Açaí com morangos frescos fatiados e granola crocante. Leveza na medida certa.</div>
+          <div class="produto-desc">Morangos frescos e granola crocante.</div>
           <div class="produto-footer">
             <div class="produto-preco">R$ 21,90</div>
             <button class="btn-pedir">Pedir</button>
           </div>
         </div>
       </div>
-      <div class="produto-card">
+
+      <div class="produto-card" data-name="Bowl Fit Power" data-price="26.90">
         <div class="produto-badge">🌿 Fit</div>
-        <div class="produto-img c4">🥝</div>
+        <div class="produto-img c4"><img src="https://medicina.ribeirao.br/wp-content/uploads/2023/09/acai-com-granola-e-banana.jpeg.jpg.webp" alt=""></div>
         <div class="produto-info">
           <div class="produto-nome">Bowl Fit Power</div>
-          <div class="produto-desc">Açaí com banana, granola sem açúcar, mel e sementes de chia. Para quem cuida do corpo.</div>
+          <div class="produto-desc">Banana, granola e chia.</div>
           <div class="produto-footer">
             <div class="produto-preco">R$ 26,90</div>
             <button class="btn-pedir">Pedir</button>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <section class="complementos-section">
-     <div class="bg-parallax"></div>
+  <div class="bg-parallax"></div>
   <div class="comp-layout">
     <div>
       <div class="section-tag">Complementos</div>
-      <h2 class="section-title" style="color:#fff;">Monte como<br><em style="color:var(--amarelo)">você quiser</em></h2>
+      <h2 class="section-title">Monte como<br><em>você quiser</em></h2>
       <p class="section-sub">Mais de 25 complementos para turbinar o seu bowl. Frutas frescas, caldas artesanais, cremes e muito mais.</p>
       <div class="comp-grid">
         <span class="comp-pill destaque">🍓 Morango</span>
@@ -137,74 +178,68 @@
         <span class="comp-pill">+ mais 12...</span>
       </div>
     </div>
-    <div class="comp-visual parallax" data-speed="0.4">🫐</div>
+    <div class="comp-visual parallax" data-speed="0.4" aria-hidden="true">🫐</div>
   </div>
 </section>
 
 <section class="fidelidade-section">
-  <div style="max-width:1100px;margin:0 auto;">
+  <div class="container">
     <div class="section-tag">Programa de Fidelidade</div>
     <h2 class="section-title">Seja um <em>Açaí Lovers</em></h2>
-    <p class="section-sub" style="margin:0 auto;">Cadastre-se e ganhe cashback em cada compra. Quanto mais você consome, mais desconto você tem.</p>
+    <p class="section-sub section-sub--center">Cadastre-se e ganhe cashback em cada compra. Quanto mais você consome, mais desconto você tem.</p>
     <div class="fidelidade-card">
       <div class="cashback-badge">5% Cashback</div>
       <h3>A cada compra você acumula pontos</h3>
       <p>Cadastre seu número de telefone e comece a aproveitar os benefícios exclusivos do nosso programa de fidelidade. Desconto garantido desde a primeira compra.</p>
       <div class="fidelidade-input-row">
-        <input type="tel" class="fidelidade-input" placeholder="+55 (xx) 99999-9999" />
+        <label for="telefone-fidelidade" class="sr-only">Número de telefone</label>
+        <input type="tel" id="telefone-fidelidade" class="fidelidade-input" placeholder="+55 (xx) 99999-9999" autocomplete="tel" />
         <button class="btn-cadastrar">Cadastrar</button>
       </div>
     </div>
   </div>
 </section>
 
-<section class="lojas-section" id="lojass">
-  <div style="max-width:1100px;margin:0 auto;">
+<section class="lojas-section" id="lojas">
+  <div class="container">
     <div class="section-tag">Nossas Lojas</div>
-    <h2 class="section-title" id="lojasnossas">Encontre uma loja <em>perto de você</em></h2>
+    <h2 class="section-title">Encontre uma loja <em>perto de você</em></h2>
     <p class="section-sub">Presentes em mais de 12 estados pelo Brasil, estamos sempre ao seu alcance.</p>
     <div class="lojas-grid">
-      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">São Paulo</div><div class="loja-qtd">+45 unidades</div><div class="loja-status">● Aberto agora</div></div>
-      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">Rio de Janeiro</div><div class="loja-qtd">+28 unidades</div><div class="loja-status">● Aberto agora</div></div>
-      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">Belo Horizonte</div><div class="loja-qtd">+18 unidades</div><div class="loja-status">● Aberto agora</div></div>
-      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">Campo Grande</div><div class="loja-qtd">+8 unidades</div><div class="loja-status">● Aberto agora</div></div>
-      <div class="loja-card"><div class="loja-icon">🗺️</div><div class="loja-cidade">Cuiabá</div><div class="loja-qtd">+6 unidades</div><div class="loja-status">● Aberto agora</div></div>
-      <div class="loja-card" style="border-style:dashed;background:rgba(61,26,110,0.03)"><div class="loja-icon">📍</div><div class="loja-cidade">Ver todas</div><div class="loja-qtd">+200 unidades no Brasil</div><div class="loja-status" style="background:rgba(61,26,110,0.1);color:var(--roxo)">→ Ver mapa</div></div>
+      <div class="loja-card" onclick="mostrarMapa('-20.546073863607678, -54.572700852705445')" >
+      <div class="loja-icon">🗺️</div><div class="loja-cidade">Campo Grande - MS | Moreninha</div><div class="loja-qtd">+45 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card" onclick="mostrarMapa('-20.518414920890102, -54.616199490132935')"><div class="loja-icon">🗺️</div><div class="loja-cidade">Campo Grande - MS | Pioneiros</div><div class="loja-qtd">+28 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card" onclick="mostrarMapa('-20.50958920319554, -54.56651867294933')"
+      ><div class="loja-icon">🗺️</div><div class="loja-cidade">Campo Grande - MS | Itamaracá</div><div class="loja-qtd">+18 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card" onclick="mostrarMapa('-20.498549543788425, -54.6621349919773')">
+        <div class="loja-icon">🗺️</div><div class="loja-cidade">Campo Grande - MS | Leblon</div><div class="loja-qtd">+8 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card" onclick="mostrarMapa('-20.389853879316817, -54.56886830178745')">
+        <div class="loja-icon">🗺️</div><div class="loja-cidade">Campo Grande - MS | Nova Lima</div><div class="loja-qtd">+6 unidades</div><div class="loja-status">● Aberto agora</div></div>
+      <div class="loja-card loja-card--ver-todas"><div class="loja-icon">📍</div><div class="loja-cidade">Ver todas</div><div class="loja-qtd">+200 unidades no Brasil</div><div class="loja-status loja-status--link">→ Ver mapa</div></div>
+      ></div>
+      
     </div>
   </div>
+  <div id="mapa-container" style="margin-top:40px; display:none;">
+  <iframe 
+    id="mapaFrame"
+    width="100%" 
+    height="400" 
+    style="border:0; border-radius:16px;"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
 </section>
 
-<section id="raspadinha" style="padding:80px 20px;text-align:center;background:#fff;">
-  <h2 style="font-family:Fraunces;font-size:2rem;color:#240F45;">
-    🎁 Raspe e ganhe desconto
-  </h2>
-  <p style="color:#666;margin-bottom:20px;">
-    Descubra seu desconto exclusivo agora
-  </p>
-
-  <div style="position:relative;width:260px;margin:0 auto;">
-    
-    <!-- PREMIO -->
-    <div id="premio" style="
-      background:#F4C842;
-      color:#240F45;
-      font-weight:700;
-      font-size:28px;
-      padding:40px 0;
-      border-radius:16px;
-    ">
-      ?
-    </div>
-
-    <!-- CAMADA PRA RASPAR -->
-    <canvas id="raspagem" width="260" height="120"
-      style="
-        position:absolute;
-        top:0;
-        left:0;
-        border-radius:16px;
-        cursor:pointer;
-      ">
+<section class="raspadinha-section" id="raspadinha">
+  <h2 class="raspadinha-title">🎁 Raspe e ganhe desconto</h2>
+  <p class="raspadinha-sub">Descubra seu desconto exclusivo agora</p>
+  <div class="raspadinha-wrapper">
+    <div id="premio" class="raspadinha-premio">?</div>
+    <canvas id="raspagem" class="raspadinha-canvas" width="260" height="120"
+      aria-label="Área de raspadinha — raspe para revelar seu desconto">
+      <p>Raspe para revelar seu desconto exclusivo.</p>
     </canvas>
   </div>
 </section>
@@ -244,6 +279,7 @@
     Açaí Puro © 2026 · Todos os direitos reservados
   </div>
 </footer>
+
 <div id="popupUrgencia" style="
   position:fixed;
   bottom:20px;
@@ -261,190 +297,8 @@
   ⚡🎁 Raspe e ganhe seu desconto!
 </div>
 
+<div id="toast" class="toast" role="alert" aria-live="assertive"></div>
 
-<script>
-// ==========================
-// 🎁 RASPADINHA (OK)
-// ==========================
-(function(){
-
-const canvas = document.getElementById("raspagem");
-if(!canvas) return;
-
-const premioEl = document.getElementById("premio");
-const ctx = canvas.getContext("2d");
-
-const EXPIRACAO_HORAS = 12;
-
-function now(){ return new Date().getTime(); }
-
-function salvar(data){
-  localStorage.setItem("raspadinha_data", JSON.stringify(data));
-}
-
-function carregar(){
-  const d = localStorage.getItem("raspadinha_data");
-  return d ? JSON.parse(d) : null;
-}
-
-function limpar(){
-  localStorage.removeItem("raspadinha_data");
-}
-
-let data = carregar();
-
-if(data && now() > data.expira){
-  limpar();
-  data = null;
-}
-
-if(data && data.usado){
-  canvas.style.display = "none";
-  premioEl.innerText = data.desconto + "% OFF 🎁";
-  return;
-}
-
-let desconto;
-
-if(data){
-  desconto = data.desconto;
-} else {
-  desconto = Math.floor(Math.random() * 11) + 5;
-
-  data = {
-    desconto: desconto,
-    usado: false,
-    criado: now(),
-    expira: now() + (EXPIRACAO_HORAS * 60 * 60 * 1000)
-  };
-
-  salvar(data);
-}
-
-premioEl.innerText = desconto + "% OFF";
-
-ctx.fillStyle = "#bbb";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-ctx.globalCompositeOperation = "destination-out";
-
-let raspando = false;
-let raspado = 0;
-
-canvas.addEventListener("mousedown", ()=> raspando = true);
-canvas.addEventListener("mouseup", ()=> raspando = false);
-canvas.addEventListener("mouseleave", ()=> raspando = false);
-canvas.addEventListener("mousemove", raspar);
-
-canvas.addEventListener("touchstart", ()=> raspando = true);
-canvas.addEventListener("touchend", ()=> raspando = false);
-canvas.addEventListener("touchmove", rasparTouch);
-
-function raspar(e){
-  if(!raspando) return;
-
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  desenhar(x,y);
-}
-
-function rasparTouch(e){
-  const rect = canvas.getBoundingClientRect();
-  const t = e.touches[0];
-
-  const x = t.clientX - rect.left;
-  const y = t.clientY - rect.top;
-
-  desenhar(x,y);
-}
-
-function desenhar(x,y){
-  ctx.beginPath();
-  ctx.arc(x, y, 20, 0, Math.PI * 2);
-  ctx.fill();
-
-  raspado++;
-
-  if(raspado % 15 === 0){
-    verificar();
-  }
-}
-
-function verificar(){
-  const pixels = ctx.getImageData(0,0,canvas.width,canvas.height).data;
-  let total = pixels.length / 4;
-  let transparentes = 0;
-
-  for(let i=3; i<pixels.length; i+=4){
-    if(pixels[i] === 0) transparentes++;
-  }
-
-  if(transparentes / total > 0.28){
-    finalizar();
-  }
-}
-
-function finalizar(){
-
-  canvas.style.display = "none";
-
-  data.usado = true;
-  salvar(data);
-
-  const codigo = "RASPA" + desconto;
-
-  localStorage.setItem("cupom", codigo);
-
-  window.cupons = window.cupons || {};
-  window.cupons[codigo] = {
-    tipo: "percentual",
-    valor: desconto
-  };
-
-  setTimeout(()=>{
-    alert(`🎉 Você ganhou ${desconto}% OFF!\nCupom: ${codigo}`);
-  }, 300);
-}
-
-})();
-
-
-// ==========================
-// 🌊 PARALLAX PROFISSIONAL (AGORA FUNCIONA)
-// ==========================
-(function(){
-
-  const elements = document.querySelectorAll(".parallax");
-  const bg = document.querySelector(".bg-parallax");
-
-  let ticking = false;
-
-  function update(){
-    const scrollY = window.scrollY;
-
-    elements.forEach(el => {
-      const speed = parseFloat(el.dataset.speed) || 0.3;
-      el.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
-    });
-
-    if(bg){
-      bg.style.transform = `translate3d(0, ${scrollY * 0.15}px, 0)`;
-    }
-
-    ticking = false;
-  }
-
-  function onScroll(){
-    if(!ticking){
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }
-
-  window.addEventListener("scroll", onScroll);
-
-})();
-</script>
+<script src="app.js"></script>
 </body>
 </html>
