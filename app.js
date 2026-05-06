@@ -135,7 +135,7 @@ function finalizeOrder() {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   message += `Total: R$ ${total.toFixed(2)}\n`;
   message += 'Obrigado!';
-  const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`; // Substitua pelo número real do WhatsApp
+  const whatsappUrl = `https://wa.me/5567996981846?text=${encodeURIComponent(message)}`; // Substitua pelo número real do WhatsApp
   window.open(whatsappUrl, '_blank');
 }
 
