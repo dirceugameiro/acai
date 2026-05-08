@@ -119,8 +119,12 @@ function removeFromCart(index) {
 function toggleCart() {
   const overlay = document.getElementById('cartOverlay');
   const sidebar = document.getElementById('cartSidebar');
+
   overlay.classList.toggle('active');
   sidebar.classList.toggle('active');
+
+  // trava scroll do body no mobile
+  document.body.classList.toggle('cart-open');
 }
 
 function finalizeOrder() {
