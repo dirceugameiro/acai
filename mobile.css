@@ -116,3 +116,12 @@
   .cart-item-controls { align-self: flex-end; }
 }
 
+body.cart-open {
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .cart-sidebar {
+    width: 100%;
+  }
+}
