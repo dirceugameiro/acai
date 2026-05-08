@@ -149,7 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
   updateCartDisplay();
 
   document.querySelectorAll('.btn-pedir').forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
       const card = this.closest('.produto-card');
       const name = card.dataset.name;
       const price = card.dataset.price;
@@ -411,32 +412,43 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ===== TOUCH =====
- slider.addEventListener("touchstart", (e) => {
+ // ===== TOUCH MOBILE =====
+let touchingSlider = false;
 
-  // 🔥 evita bloquear clique dos botões
+slider.addEventListener("touchstart", (e) => {
+
+  // NÃO ativa drag em botões
   if (
+    e.target.closest(".btn-pedir") ||
     e.target.closest("button") ||
     e.target.closest("a")
   ) {
+    touchingSlider = false;
     return;
   }
 
+  touchingSlider = true;
+
   stopLoop();
+
   startX = e.touches[0].pageX;
   scrollStart = slider.scrollLeft;
-});
+
+}, { passive: true });
 
 slider.addEventListener("touchmove", (e) => {
 
-  if (
-    e.target.closest("button") ||
-    e.target.closest("a")
-  ) {
-    return;
-  }
+  if (!touchingSlider) return;
 
   const walk = (e.touches[0].pageX - startX) * 1.5;
+
   slider.scrollLeft = scrollStart - walk;
+
+}, { passive: true });
+
+slider.addEventListener("touchend", () => {
+  touchingSlider = false;
+  startLoop();
 });
 
 })();
