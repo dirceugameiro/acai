@@ -78,6 +78,7 @@
   }
 
   .cart-btn { display: none; }
+  .mobile-cart-entry { pointer-events: auto; }
   .mobile-cart-entry { display: block; }
   .mobile-cart-btn { width: 100%; padding: 1rem; }
 
@@ -127,6 +128,7 @@ body.cart-open {
 }
 .btn-pedir {
   position: relative;
-  z-index: 20;
+  z-index: 50;
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
