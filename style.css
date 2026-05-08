@@ -401,11 +401,13 @@ section { padding: 6rem 3rem; }
   height: 100%;
   width: 100%;
 }
-c4 img{
+.c4 img{
   object-position: center top;
   object-fit: cover;
   height: 100%;
   width: 100%;}
+
+  
 .produto-img::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.1) 100%);
