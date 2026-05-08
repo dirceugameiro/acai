@@ -125,3 +125,8 @@ body.cart-open {
     width: 100%;
   }
 }
+.btn-pedir {
+  position: relative;
+  z-index: 20;
+  touch-action: manipulation;
+}
