@@ -98,20 +98,20 @@ nav {
   color: var(--roxo);
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 100px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-right: 1rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-   box-shadow: 0 2px 12px rgba(244,200,66,0.4);
+  transition: transform 0.3s, box-shadow 0.2s;
+   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.39);
 }
 
 .cart-btn:hover { 
-  transform: translateY(-1px); box-shadow: 0 4px 18px rgba(244,200,66,0.55);
-   box-shadow: 0 2px 12px rgba(244,200,66,0.4);
+   transform: translateY(-1px); box-shadow: 0 4px 18px rgba(0, 0, 0, 0.329); 
+   
  }
 
 .mobile-cart-entry { display: none; }
