@@ -42,14 +42,15 @@
     transform: translateY(0);
   }
   .nav-cta {
-    min-width: 40px;
-    height: 40px;
-    padding: 0 3rem;
-    display: inline-flex;
+    min-width: auto;
+    height: auto;
+    padding: 0.5rem 0.8rem;
+    display: none;
     align-items: center;
     justify-content: center;
     white-space: nowrap;
     cursor: pointer;
+    font-size: 0.8rem;
   }
   .nav-cta.mobile-cart-btn {
    margin-top: 30px;
@@ -77,9 +78,9 @@
     letter-spacing: 0;
   }
 
-  .cart-btn { display: none; }
+  .cart-btn { display: flex; }
   .mobile-cart-entry { pointer-events: auto; }
-  .mobile-cart-entry { display: block; }
+  .mobile-cart-entry { display: none; }
   .mobile-cart-btn { width: 100%; padding: 1rem; }
 
   .hero { padding: 7rem 1.5rem 3rem; }
