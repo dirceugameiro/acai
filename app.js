@@ -411,20 +411,33 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ===== TOUCH =====
-  slider.addEventListener("touchstart", (e) => {
-    stopLoop();
-    startX = e.touches[0].pageX;
-    scrollStart = slider.scrollLeft;
-  });
+ slider.addEventListener("touchstart", (e) => {
 
-  slider.addEventListener("touchend", () => {
-    startLoop();
-  });
+  // 🔥 evita bloquear clique dos botões
+  if (
+    e.target.closest("button") ||
+    e.target.closest("a")
+  ) {
+    return;
+  }
 
-  slider.addEventListener("touchmove", (e) => {
-    const walk = (e.touches[0].pageX - startX) * 1.5;
-    slider.scrollLeft = scrollStart - walk;
-  });
+  stopLoop();
+  startX = e.touches[0].pageX;
+  scrollStart = slider.scrollLeft;
+});
+
+slider.addEventListener("touchmove", (e) => {
+
+  if (
+    e.target.closest("button") ||
+    e.target.closest("a")
+  ) {
+    return;
+  }
+
+  const walk = (e.touches[0].pageX - startX) * 1.5;
+  slider.scrollLeft = scrollStart - walk;
+});
 
 })();
 
